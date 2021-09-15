@@ -9,10 +9,9 @@ import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: 400,
-    height: 300,
-    paddingLeft: 10,
-    paddingRight: 10,
+    width: 470,
+    height: 340,
+    paddingLeft: 30,
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 0,
       paddingRight: 0,

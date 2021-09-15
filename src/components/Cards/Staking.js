@@ -25,21 +25,23 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: 450,
-    height: 300,
-    paddingLeft: 10,
-    paddingRight: 10,
+    width: 470,
+    height: 350,
+
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 0,
       paddingRight: 0,
       width: 300,
-      height: 320,
+      height: 380,
     },
   },
   cardHeader: {
     display: "flex",
     alignItems: "center",
     width: "100%",
+    backdropFilter: "blur(20px)",
+    transform: "perspective(500px)",
+    transformStyle: "preserve-3d",
   },
   cardContents: {
     display: "flex",
@@ -48,14 +50,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     height: "100%",
     width: "100%",
+    textShadow: "0 0 1em transparentize($black, 0.5)",
+    background: "transparentize($white, 0.8)",
   },
   avatar: {
-    width: 35,
+    width: 30,
     height: "auto",
     marginLeft: 60,
   },
   cardHeading: {
     fontSize: 18,
+    [theme.breakpoints.down("sm")]: {},
   },
   cardText: {
     fontSize: 14,
@@ -72,8 +77,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 26,
   },
   hint: {
-    fontSize: 10,
-    fontWeight: 400,
+    fontSize: 12,
+    fontWeight: 500,
     color: "#919191",
     [theme.breakpoints.down("sm")]: {
       fontSize: 10,
@@ -84,10 +89,13 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "start",
   },
   poolItemText: {
-    fontSize: 12,
+    fontSize: 13,
     marginLeft: 60,
     margin: 0,
     marginTop: 2,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 10,
+    },
   },
   stakeButtons: {
     display: "flex",
@@ -188,6 +196,7 @@ const Staking = ({
     <div className={classes.card}>
       <div className="card-theme">
         <div className={classes.cardContents}>
+          <h6 className={classes.cardHeading}>Staking Pool</h6>
           {loading[tokenType] ? (
             <div>
               <CircularProgress className={classes.numbers} />
@@ -195,6 +204,7 @@ const Staking = ({
           ) : (
             <>
               <div className={classes.cardHeader}>
+                <br />
                 <img className={classes.avatar} src={tokenLogo[tokenType]} />
                 <small
                   style={{
@@ -207,7 +217,6 @@ const Staking = ({
                 >
                   {tokenType}
                 </small>
-                <h6 className={classes.cardHeading}>Staking Pool</h6>
               </div>
 
               {["BITE", "PWAR", CFL365].includes(tokenType) ? (
